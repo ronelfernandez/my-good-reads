@@ -50,7 +50,7 @@ const BookSearch = () => {
                             }}
                         >
                             <input
-                                className="full-width"
+                                className="full-width input-search"
                                 autoFocus
                                 name="gsearch"
                                 type="search"

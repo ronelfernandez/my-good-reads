@@ -4,18 +4,40 @@ import * as React from "react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 // import testing utilities
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import BookSearch from "./BookSearch";
+import SearchResults from "../search-results/SearchResults";
 
-const fakeUserResponse = { token: "fake_user_token" };
+const fakeSearchResponse = {
+    items: [
+        {
+            id: "a",
+            volumeInfo: {
+                title: "a",
+                description: "a",
+                imageLinks: [],
+                authors: ["a"],
+                publisher: ["a"],
+                publishedDate: "1/1/2021",
+            },
+        },
+        {
+            id: "b",
+            volumeInfo: {
+                title: "b",
+                description: "b",
+                imageLinks: [],
+                authors: ["b"],
+                publisher: ["b"],
+                publishedDate: "1/1/2021",
+            },
+        },
+    ],
+};
 const server = setupServer(
-    rest.get(
-        "https://www.googleapis.com/books/v1/volumes",
-        (req, res, ctx) => {
-            console.log("testdzzzz");
-            return res(ctx.json(fakeUserResponse));
-        }
-    )
+    rest.get("https://www.googleapis.com/books/v1/volumes", (req, res, ctx) => {
+        return res(ctx.json(fakeSearchResponse));
+    })
 );
 
 beforeAll(() => server.listen());
@@ -24,9 +46,14 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-test("allows the user to login successfully", async () => {
-    render(<BookSearch />);
+test("input should be populated with sample search text when button is clicked", async () => {
+    const { container } = render(<BookSearch />);
 
-    console.log("text");
+    expect(container.querySelector(".empty")).toBeInTheDocument();
+
     fireEvent.click(screen.getByText(/Javascript/i));
+
+    const inputSearch = await container.querySelector(".input-search");
+    expect(inputSearch.value).toBe("Javascript");
+    expect(container.querySelector(".empty")).not.toBeInTheDocument();
 });

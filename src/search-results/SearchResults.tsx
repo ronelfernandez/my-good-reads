@@ -48,11 +48,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     const Authors = ({ authors }: { authors: string[] }) => {
         return (
             <>
-                by{" "}
+                by
                 {authors &&
                     authors.map((author: string, index: number) => (
                         <React.Fragment key={author}>
-                            {index > 0 ? " and " : " "}
+                            {index > 0 ? "and" : ""}
                             <button
                                 className="button-link"
                                 onClick={() => searchByAuthor(author)}
@@ -66,7 +66,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     };
     const PublishedDate = ({ publishedDate }: { publishedDate: any }) => (
         <>
-            {new Date(publishedDate).toLocaleDateString("en-US", {
+            {' ' + new Date(publishedDate).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -82,7 +82,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     );
 
     return (
-        <ul>
+        <ul className="search-results-list">
             {allAvailableBooks.map(
                 (
                     {
@@ -107,7 +107,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         <div className="book-info">
                             <Title title={title} />
                             <div className="book-authors-container">
-                                <Authors authors={authors} />|{" "}
+                                <Authors authors={authors} />|
                                 <PublishedDate publishedDate={publishedDate} />
                             </div>
                             <Publisher publisher={publisher} />
