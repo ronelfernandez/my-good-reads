@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 // import testing utilities
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import * as React from "react";
 import SearchResults from "../search-results/SearchResults";
 

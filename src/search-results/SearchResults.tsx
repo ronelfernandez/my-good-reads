@@ -98,7 +98,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                     },
                     index
                 ) => (
-                    <li className="book" key={id}>
+                    <li className="book" key={id + title + publishedDate}>
                         <ImageAction
                             imageLinks={imageLinks}
                             title={title}
