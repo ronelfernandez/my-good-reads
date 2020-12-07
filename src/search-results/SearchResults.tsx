@@ -65,13 +65,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         );
     };
     const PublishedDate = ({ publishedDate }: { publishedDate: any }) => (
-        <>
+        <span className="book-published">
             {' ' + new Date(publishedDate).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
             })}
-        </>
+        </span>
     );
     const Publisher = ({ publisher }: { publisher: string }) => (
         <div className="book-publisher">{publisher}</div>

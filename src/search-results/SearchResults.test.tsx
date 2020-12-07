@@ -88,6 +88,10 @@ test("book info passed should be present", async () => {
     expect(container.querySelector(".book-author")).toHaveTextContent(
         mockBooks.items[0].volumeInfo.authors[0]
     );
+
+    expect(container.querySelector(".book-published")).toHaveTextContent(
+        "Jan 1, 2021"
+    );
 });
 
 test("add to wishlist button should be disabled when in wishlist", async () => {
