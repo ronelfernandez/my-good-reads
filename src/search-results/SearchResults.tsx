@@ -92,6 +92,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                 (
                     {
                         id,
+                        etag,
                         volumeInfo: {
                             title,
                             description,
@@ -104,7 +105,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                     },
                     index
                 ) => (
-                    <li className="book" key={id + title + publishedDate}>
+                    <li className="book" key={id + etag + title + publishedDate}>
                         <ImageAction
                             imageLinks={imageLinks}
                             title={title}

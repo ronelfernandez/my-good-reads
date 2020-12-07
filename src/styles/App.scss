@@ -107,16 +107,6 @@ form {
 .full-width {
   width: 100%;
 }
-.book {
-  border: 1px solid silver;
-  margin-top: .5rem;
-}
-.book--container {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content:space-around;
-  align-items: stretch;
-}
 
 .search-params {
   flex-grow: 3;

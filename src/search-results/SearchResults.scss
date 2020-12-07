@@ -1,49 +1,57 @@
-@import '../styles//variables';
-.book {
-    padding: 20px;
+@import "../styles//variables";
+.book--container {
     display: flex;
-    .book-image {
-        width: 128px;
-        height: 168px;
-    }
-    .image-action {
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    .book {
+        border-bottom: 2px solid $gray35;
+        margin-top: 0.5rem;
+        padding: 20px;
         display: flex;
-        flex-direction: column;
-        margin-right: 20px;
-        align-items: center;
-        button {
-            border-radius: 5px;
-            padding: 8px 5px;
-            margin-top: 20px;
-            width: 100%;
-            font-size: 14px;
-            border: solid 1px #007185;;
+        .book-image {
+            width: 128px;
+            height: 168px;
         }
-        button:disabled {
-            border: solid 1px $gray10;
-        }
-    }
-    .book-info {
-        .book-title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .book-authors-container {
-            font-size: 16px;
-            margin: 2px 0;
-            .book-author {
-                font-size: 16px;
-                display: inline-block;
-                color: #007185;
+        .image-action {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+            align-items: center;
+            button {
+                border-radius: 5px;
+                padding: 8px 5px;
+                margin-top: 20px;
+                width: 100%;
+                font-size: 14px;
+                border: solid 1px #007185;
+            }
+            button:disabled {
+                border: solid 1px $gray10;
             }
         }
-        .book-publisher {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .book-description {
-            color: $gray60;
-            font-size: 13px;
+        .book-info {
+            .book-title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .book-authors-container {
+                font-size: 16px;
+                margin: 2px 0;
+                .book-author {
+                    font-size: 16px;
+                    display: inline-block;
+                    color: $blue-link;
+                }
+            }
+            .book-publisher {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .book-description {
+                color: $gray60;
+                font-size: 13px;
+            }
         }
     }
 }
