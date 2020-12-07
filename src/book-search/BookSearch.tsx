@@ -10,7 +10,7 @@ const BookSearch = () => {
     const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
     const [allAvailableBooks, setAllAvailableBooks] = useState([]);
 
-    const [wishList, setWishList] = useState<string[]>([]);
+    const [wishList, setWishList] = useState<any[]>([]);
 
     const requestBooks = useCallback(async () => {
         if (bookTypeToSearch) {
@@ -66,17 +66,17 @@ const BookSearch = () => {
                             <div className="empty">
                                 <p>
                                     Try searching for a topic, for example{" "}
-                                    <a
+                                    <button
+                                        className="button-link button-link-sample-text"
                                         onClick={() => {
                                             updateBookType("Javascript");
                                             updateBookTypeToSearch(
                                                 "Javascript"
                                             );
                                         }}
-                                        href="javascipt:void()"
                                     >
                                         "Javascript"
-                                    </a>
+                                    </button>
                                 </p>
                             </div>
                         )}
@@ -84,17 +84,22 @@ const BookSearch = () => {
                 </div>
                 <SearchResults
                     allAvailableBooks={allAvailableBooks}
-                    addToWishList={(title) => {
-                        if (!wishList.find((t) => t === title)) {
-                            setWishList([...wishList, title]);
+                    wishList={wishList}
+                    addToWishList={(book) => {
+                        if (!wishList.find((t) => t.id === book.id)) {
+                            setWishList([...wishList, book]);
                         }
+                    }}
+                    searchByAuthor={(author: string) => {
+                        updateBookType(author);
+                        updateBookTypeToSearch(author);
                     }}
                 />
             </div>
             <WishList
                 wishList={wishList}
-                removeBook={(title) => {
-                    setWishList(wishList.filter((t) => t !== title));
+                removeBook={(id) => {
+                    setWishList(wishList.filter((book) => book.id !== id));
                 }}
             />
         </div>

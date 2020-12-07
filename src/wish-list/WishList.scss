@@ -13,18 +13,25 @@
         display: flex;
         padding: 10px;
         border-bottom: solid 1px #dedede;
+        align-items: center;
         .wish-list-title {
             flex-grow: 1;
             display: inline-block;
             margin-right: 10px;
             font-size: 16px;
             font-weight: bold;
+            .wish-list-date {
+                margin-top: 3px;
+                font-size: 13px;
+                font-weight: normal;
+            }
         }
         button {
             flex-grow: 0;
             flex-shrink: 0;
             width: 30px;
             height: 30px;
+            font-size: 20px;
         }
     }
 }

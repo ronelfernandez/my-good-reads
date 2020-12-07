@@ -11,8 +11,15 @@
         margin-right: 20px;
         align-items: center;
         button {
+            border-radius: 5px;
+            padding: 8px 5px;
             margin-top: 20px;
             width: 100%;
+            font-size: 14px;
+            border: solid 1px #007185;;
+        }
+        button:disabled {
+            border: solid 1px #dedede;
         }
     }
     .book-info {
@@ -21,13 +28,12 @@
             font-weight: bold;
         }
         .book-authors-container {
+            font-size: 16px;
             margin: 2px 0;
             .book-author {
+                font-size: 16px;
                 display: inline-block;
                 color: #007185;
-                &:not:first-child {
-                    color: red;
-                }
             }
         }
         .book-publisher {

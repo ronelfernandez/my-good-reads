@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.button-link {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #007185;
+}
+
+.button-link span {
+  color: #007185;
+}
+
+.button-link:disabled {
+  color: #dedede;
+}

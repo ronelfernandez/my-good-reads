@@ -4,66 +4,114 @@ import "./SearchResults.scss";
 type SearchResultsProps = {
     allAvailableBooks: any[];
     addToWishList: (book: any) => void;
+    searchByAuthor: (author: string) => void;
+    wishList: any[];
 };
 
 const SearchResults: React.FC<SearchResultsProps> = ({
     allAvailableBooks,
     addToWishList,
+    wishList,
+    searchByAuthor,
 }) => {
+    const Title = ({ title }: { title: string }) => (
+        <div className="book-title">{title}</div>
+    );
+    const ImageAction = ({
+        imageLinks,
+        title,
+        book,
+    }: {
+        imageLinks: any;
+        title: string;
+        book: any;
+    }) => {
+        const inWishList = wishList.some((w) => w.id === book.id);
+        return (
+            <div className="image-action">
+                <img
+                    src={imageLinks?.smallThumbnail}
+                    alt={title}
+                    className="book-image"
+                />
+                <button
+                    onClick={() => addToWishList(book)}
+                    disabled={inWishList}
+                    className="button-link button-add-to-wishlist"
+                >
+                    Add to Wishlist
+                </button>
+            </div>
+        );
+    };
+
+    const Authors = ({ authors }: { authors: string[] }) => {
+        return (
+            <>
+                by{" "}
+                {authors &&
+                    authors.map((author: string, index: number) => (
+                        <React.Fragment key={author}>
+                            {index > 0 ? " and " : " "}
+                            <button
+                                className="button-link"
+                                onClick={() => searchByAuthor(author)}
+                            >
+                                <span className="book-author">{author}</span>
+                            </button>
+                        </React.Fragment>
+                    ))}{" "}
+            </>
+        );
+    };
+    const PublishedDate = ({ publishedDate }: { publishedDate: any }) => (
+        <>
+            {new Date(publishedDate).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+            })}
+        </>
+    );
+    const Publisher = ({ publisher }: { publisher: string }) => (
+        <div className="book-publisher">{publisher}</div>
+    );
+
+    const Description = ({ description }: { description: string }) => (
+        <div className="book-description">{description}</div>
+    );
+
     return (
         <ul>
             {allAvailableBooks.map(
-                ({
-                    id,
-                    volumeInfo: {
-                        title,
-                        description,
-                        imageLinks: { smallThumbnail },
-                        authors,
-                        publisher,
-                        publishedDate,
+                (
+                    {
+                        id,
+                        volumeInfo: {
+                            title,
+                            description,
+                            imageLinks,
+                            authors,
+                            publisher,
+                            publishedDate,
+                        },
                     },
-                }) => (
+                    index
+                ) => (
                     <li className="book" key={id}>
-                        <div className="image-action">
-                            <img
-                                src={smallThumbnail}
-                                alt={title}
-                                className="book-image"
-                            />
-                            <button onClick={() => addToWishList(title)}>
-                                Add to Wishlist
-                            </button>
-                        </div>
+                        <ImageAction
+                            imageLinks={imageLinks}
+                            title={title}
+                            book={allAvailableBooks[index]}
+                        />
                         <div className="book-info">
-                            <div className="book-title">{title}</div>
+                            <Title title={title} />
                             <div className="book-authors-container">
-                                by{" "}
-                                {authors && authors.map(
-                                    (author: string, index: number) => (
-                                        <React.Fragment key={author}>
-                                            {index > 0 ? " and " : " "}
-                                            <span className="book-author">
-                                                {author}
-                                            </span>
-                                        </React.Fragment>
-                                    )
-                                )}{" "}
-                                |{" "}
-                                {new Date(publishedDate).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                        day: "numeric",
-                                        month: "short",
-                                        year: "numeric",
-                                    }
-                                )}
+                                <Authors authors={authors} />|{" "}
+                                <PublishedDate publishedDate={publishedDate} />
                             </div>
-                            <div className="book-publisher">{publisher}</div>
-
-                            <div className="book-description">
-                                {description}
-                            </div>
+                            <Publisher publisher={publisher} />
+                            <Description description={description} />
                         </div>
                     </li>
                 )
