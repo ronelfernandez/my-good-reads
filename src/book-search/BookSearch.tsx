@@ -67,13 +67,16 @@ const BookSearch = () => {
                                     name="gsearch"
                                     type="search"
                                     value={bookType}
-                                    placeholder="Search for books to add to your reading list"
                                     onChange={(e) => {
                                         updateBookType(e.target.value);
                                         onSearchChangeD(e.target.value);
                                     }}
+                                    aria-describedby="search-instructions"
                                 />
                             </label>
+                            <span id="search-instructions">
+                                Search for books to add to your reading list
+                            </span>
                         </form>
                         {!bookType && (
                             <div className="empty">

@@ -8,10 +8,10 @@ type WishListProps = {
 
 const WishList: React.FC<WishListProps> = ({ wishList, removeBook }) => {
     return (
-        <div className="wish-list--container">
-            <div className="wish-list-header">
-                My Reading Wishist ({wishList.length})
-            </div>
+        <aside className="wish-list--container">
+            <h3 className="wish-list-header">
+                My Reading Wishlist ({wishList.length})
+            </h3>
             <ul>
                 {wishList.map(
                     ({
@@ -45,7 +45,7 @@ const WishList: React.FC<WishListProps> = ({ wishList, removeBook }) => {
                     )
                 )}
             </ul>
-        </div>
+        </aside>
     );
 };
 

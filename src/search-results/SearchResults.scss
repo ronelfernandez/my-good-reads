@@ -1,3 +1,4 @@
+@import '../styles//variables';
 .book {
     padding: 20px;
     display: flex;
@@ -19,7 +20,7 @@
             border: solid 1px #007185;;
         }
         button:disabled {
-            border: solid 1px #dedede;
+            border: solid 1px $gray10;
         }
     }
     .book-info {
@@ -41,7 +42,7 @@
             margin-bottom: 10px;
         }
         .book-description {
-            color: rgb(51, 51, 51);
+            color: $gray60;
             font-size: 13px;
         }
     }
