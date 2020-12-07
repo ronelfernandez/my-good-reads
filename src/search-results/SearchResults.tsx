@@ -21,19 +21,23 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         imageLinks,
         title,
         book,
+        infoLink,
     }: {
         imageLinks: any;
         title: string;
         book: any;
+        infoLink: string;
     }) => {
         const inWishList = wishList.some((w) => w.id === book.id);
         return (
             <div className="image-action">
-                <img
-                    src={imageLinks?.smallThumbnail}
-                    alt={title}
-                    className="book-image"
-                />
+                <a href={infoLink} target="_blank" rel="noopener noreferrer">
+                    <img
+                        src={imageLinks?.smallThumbnail}
+                        alt={title}
+                        className="book-image"
+                    />
+                </a>
                 <button
                     onClick={() => addToWishList(book)}
                     disabled={inWishList}
@@ -66,11 +70,12 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     };
     const PublishedDate = ({ publishedDate }: { publishedDate: any }) => (
         <span className="book-published">
-            {' ' + new Date(publishedDate).toLocaleDateString("en-US", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-            })}
+            {" " +
+                new Date(publishedDate).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                })}
         </span>
     );
     const Publisher = ({ publisher }: { publisher: string }) => (
@@ -94,6 +99,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                             authors,
                             publisher,
                             publishedDate,
+                            infoLink,
                         },
                     },
                     index
@@ -103,6 +109,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                             imageLinks={imageLinks}
                             title={title}
                             book={allAvailableBooks[index]}
+                            infoLink={infoLink}
                         />
                         <div className="book-info">
                             <Title title={title} />
