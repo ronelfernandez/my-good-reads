@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { getBooksByType } from "./book-search.service";
 import SearchResults from "../search-results/SearchResults";
 import "./BookSearch.scss";
@@ -11,6 +11,7 @@ const BookSearch = () => {
     const [allAvailableBooks, setAllAvailableBooks] = useState([]);
 
     const [wishList, setWishList] = useState<any[]>([]);
+    const ref: any = useRef(null);
 
     const requestBooks = useCallback(async () => {
         if (bookTypeToSearch) {
@@ -29,6 +30,12 @@ const BookSearch = () => {
         }
         getAllBooks();
     }, [requestBooks, bookTypeToSearch]);
+
+    useEffect(() => {
+        if (ref && ref.current) {
+            ref!.current!.focus();
+        }
+    }, []);
 
     const onSearchChange = useCallback((value) => {
         updateBookTypeToSearch(value);
@@ -49,23 +56,29 @@ const BookSearch = () => {
                                 updateBookTypeToSearch(bookType);
                             }}
                         >
-                            <input
-                                className="full-width input-search"
-                                autoFocus
-                                name="gsearch"
-                                type="search"
-                                value={bookType}
-                                placeholder="Search for books to add to your reading list and press Enter"
-                                onChange={(e) => {
-                                    updateBookType(e.target.value);
-                                    onSearchChangeD(e.target.value);
-                                }}
-                            />
+                            <label>
+                                <span className="input-instructions">
+                                    Search Books
+                                </span>
+                                <input
+                                    ref={ref}
+                                    className="full-width input-search"
+                                    autoFocus
+                                    name="gsearch"
+                                    type="search"
+                                    value={bookType}
+                                    placeholder="Search for books to add to your reading list"
+                                    onChange={(e) => {
+                                        updateBookType(e.target.value);
+                                        onSearchChangeD(e.target.value);
+                                    }}
+                                />
+                            </label>
                         </form>
                         {!bookType && (
                             <div className="empty">
                                 <p>
-                                    Try searching for a topic, for example{" "}
+                                    Try searching for a topic, for example
                                     <button
                                         className="button-link button-link-sample-text"
                                         onClick={() => {
