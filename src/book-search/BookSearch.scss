@@ -23,3 +23,9 @@
         color: $gray40;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .book--layout-main  {
+        flex-direction: column;
+    }
+  }
