@@ -54,7 +54,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                         <React.Fragment key={author}>
                             {index > 0 ? "and" : ""}
                             <button
-                                className="button-link"
+                                className="button-link button-search-by-author "
                                 onClick={() => searchByAuthor(author)}
                             >
                                 <span className="book-author">{author}</span>
