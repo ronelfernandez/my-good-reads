@@ -61,14 +61,6 @@ test("search results should be populated with data passed to it", async () => {
         ".search-results-list li"
     );
     expect(bookItems).toHaveLength(mockBooks.items.length);
-
-    const button = await container.querySelector(
-        ".search-results-list li button"
-    );
-
-    fireEvent.click(button);
-
-    expect(addToWishList).toHaveBeenCalled();
 });
 
 test("book info passed should be present", async () => {

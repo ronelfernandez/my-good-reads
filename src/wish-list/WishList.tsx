@@ -18,16 +18,12 @@ const WishList: React.FC<WishListProps> = ({ wishList, removeBook }) => {
                         id,
                         volumeInfo: {
                             title,
-                            description,
-                            imageLinks: { smallThumbnail },
-                            authors,
-                            publisher,
                             publishedDate,
                         },
                     }) => (
                         <li className="wish-list-item" key={title}>
-                            <div className="wish-list-title">
-                                {title}
+                            <div className="wish-list-info">
+                                <span className="wish-list-title">{title}</span>
                                 <div className="wish-list-date">
                                     {new Date(publishedDate).toLocaleDateString(
                                         "en-US",
