@@ -39,7 +39,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                     disabled={inWishList}
                     className="button-link button-add-to-wishlist"
                 >
-                    Add to Wishlist
+                    + Add to Wishlist
                 </button>
             </div>
         );
